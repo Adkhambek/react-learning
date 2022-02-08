@@ -1,10 +1,14 @@
 import React from "react";
 import { getFunName } from "../helpers";
+import { useNavigate } from "react-router-dom";
 
 class StorePicker extends React.Component {
+    MyInput = React.createRef();
+    navigate = useNavigate();
     goToStore = (event) => {
         event.preventDefault();
-        console.log(this);
+        const storeName = this.MyInput.current.value;
+        navigate(`/store/${storeName}`, { replace: true });
     };
     render() {
         return (
@@ -13,9 +17,9 @@ class StorePicker extends React.Component {
                 <input
                     type="text"
                     ref={this.MyInput}
-                    requred
                     placeholder="Store name"
                     defaultValue={getFunName()}
+                    required
                 ></input>
                 <button type="submit">Visit Store</button>
             </form>
