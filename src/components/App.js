@@ -7,7 +7,7 @@ import Fish from "./Fish";
 class App extends React.Component {
     state = {
         fishes: [],
-        order: [],
+        orders: [],
     };
     addFish = (fish) => {
         const fishes = [...this.state.fishes];
@@ -15,6 +15,23 @@ class App extends React.Component {
         fish.id = id;
         fishes.push(fish);
         this.setState({ fishes });
+    };
+    addToOrder = (id) => {
+        const orders = [...this.state.orders];
+        const index = orders.findIndex((e) => e.id === id);
+        if (!index) {
+            orders.push({ id, order: 1 });
+        } else {
+            orders[index][order] = orders[index][order] + 1;
+        }
+
+        // console.log(orderCheck);
+        // const order = orderCheck
+        //     ? (orderCheck.order = orderCheck.order + 1)
+        //     : { id, order: 1 };
+        // console.log(order);
+        // orders.push(order);
+        this.setState({ orders });
     };
     render() {
         return (
