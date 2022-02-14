@@ -19,20 +19,21 @@ class App extends React.Component {
     addToOrder = (id) => {
         const orders = [...this.state.orders];
         const index = orders.findIndex((e) => e.id === id);
-        if (!index) {
+        if (index < 0) {
             orders.push({ id, order: 1 });
         } else {
-            orders[index][order] = orders[index][order] + 1;
+            orders[index].order = orders[index].order + 1;
         }
-
+        this.setState({ orders });
+        // console.log(orders);
         // console.log(orderCheck);
         // const order = orderCheck
         //     ? (orderCheck.order = orderCheck.order + 1)
         //     : { id, order: 1 };
         // console.log(order);
         // orders.push(order);
-        this.setState({ orders });
     };
+
     render() {
         return (
             <div className="catch-of-the-day">
@@ -40,7 +41,12 @@ class App extends React.Component {
                     <Header tagLine="Fresh seafood market" />
                     <ul className="fishes">
                         {this.state.fishes.map((e) => (
-                            <Fish key={e.id} details={e} />
+                            <Fish
+                                key={e.id}
+                                id={e.id}
+                                details={e}
+                                addToOrder={this.addToOrder}
+                            />
                         ))}
                     </ul>
                 </div>
