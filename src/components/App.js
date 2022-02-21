@@ -25,13 +25,6 @@ class App extends React.Component {
             orders[index].order = orders[index].order + 1;
         }
         this.setState({ orders });
-        // console.log(orders);
-        // console.log(orderCheck);
-        // const order = orderCheck
-        //     ? (orderCheck.order = orderCheck.order + 1)
-        //     : { id, order: 1 };
-        // console.log(order);
-        // orders.push(order);
     };
 
     render() {
@@ -50,7 +43,7 @@ class App extends React.Component {
                         ))}
                     </ul>
                 </div>
-                <Order />
+                <Order fishes={this.state.fishes} orders={this.state.orders} />
                 <Inventory addFish={this.addFish} />
             </div>
         );
